@@ -11,6 +11,7 @@ const CreateComment = ({ postId }: { postId: string }) => {
       { content }
     );
     console.log("res of creating a post ", res.data);
+
     setContent("");
   };
   return (

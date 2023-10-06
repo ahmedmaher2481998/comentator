@@ -13,8 +13,8 @@ async function getComments(postId: string): Promise<CommentsType> {
   return res.data;
 }
 
-const CommentList = async ({ postId }: { postId: string }) => {
-  const comments = await getComments(postId);
+const CommentList = async ({ comments }: { comments: CommentsType }) => {
+  // const comments = await getComments(postId);
 
   return (
     <div>

@@ -14,15 +14,19 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 
-
+const emitToAllSubs = async (ports: number[], event: any) => {
+    console.log(`emitting event ${event.type}`);
+    const allSubs = ports.map(
+        (p) => axios.post(`http://localhost:${p}/events`, event)
+    )
+    return Promise.all(allSubs)
+}
 
 app.post('/events', async (req, res) => {
     const event = req.body
-    const local = 'http://localhost:'
-    await axios.post(`${local}${ports.posts}/events`, event)
-    await axios.post(`${local}${ports.comments}/events`, event)
-    await axios.post(`${local}${ports.query}/events`, event)
-
+    const { comments, posts, query, moderation } = ports
+    const portsToCall = [comments, posts, query, moderation]
+    await emitToAllSubs(portsToCall, event)
     res.status(200).json({ status: "OK" })
 })
 

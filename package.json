@@ -8,15 +8,17 @@
     "comments",
     "client",
     "eventBus",
-    "query"
+    "query",
+    "moderation"
   ],
   "scripts": {
-    "client:start": "npm run dev --workspace=client",
-    "posts:dev": "npm run dev --workspace=posts",
-    "comments:dev": "npm run dev --workspace=comments",
-    "eventBus:dev": "npm run dev --workspace=eventBus",
-    "query:dev": "npm run dev --workspace=query",
-    "start": "concurrently 'npm:client:start' 'npm:posts:dev' 'npm:comments:dev' 'npm:eventBus:dev' 'npm:query:dev'"
+    "client": "npm run dev --workspace=client",
+    "posts": "npm run dev --workspace=posts",
+    "comments": "npm run dev --workspace=comments",
+    "eventBus": "npm run dev --workspace=eventBus",
+    "query": "npm run dev --workspace=query",
+    "moderation": "npm run dev --workspace=moderation",
+    "start": "concurrently 'npm:client' 'npm:posts' 'npm:comments' 'npm:eventBus' 'npm:query' 'npm:moderation' "
   },
   "keywords": [],
   "author": "",

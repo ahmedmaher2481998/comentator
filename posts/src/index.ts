@@ -27,7 +27,7 @@ app.post('/posts', async (req, res) => {
     res.status(201).json({ posts })
 })
 app.post('/events', (req, res) => {
-    console.log('body from posts', req.body.type);
+    console.log('enet type from posts', req.body.type);
     res.send({ status: "OK" })
 
 })

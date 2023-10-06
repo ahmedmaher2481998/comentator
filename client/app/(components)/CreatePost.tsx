@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { revalidatePath } from "next/cache";
 import axios from "axios";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -7,6 +8,7 @@ const CreatePost = () => {
     e.preventDefault();
     const res = await axios.post("http://localhost:5000/posts", { title });
     console.log("res of creating a post ", res.data);
+
     setTitle("");
   };
   return (
