@@ -40,6 +40,7 @@ app.post("/posts/:id/comments", async (req, res) => {
         status
     });
 
+    commentsByPost[`${postId}`] = comments;
     await axios.post(`http://localhost:${ports.eventBus}/events`, {
         type: eventTypes.commentCreated,
         data: {
@@ -48,7 +49,7 @@ app.post("/posts/:id/comments", async (req, res) => {
             postId: req.params.id, status
         },
     });
-    // commentsByPost[`${postId}`] = comments;
+    console.log('Added Comment with postID', postId)
     res.status(201).json(comments);
 });
 
@@ -59,7 +60,7 @@ app.post("/events", async (req, res) => {
     const { content, id, postId, status } = data
     if (type === eventTypes.commentModerated) {
         const comments = commentsByPost[`${postId}`]
-        console.log('%cComments', comments, "color:green;")
+        console.log('Comments===========>', comments)
         const comment = comments.find(c => c.id === id)
         comment!.content = content;
         comment!.status = status

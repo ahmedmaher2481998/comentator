@@ -5,6 +5,7 @@ import React from "react";
 type CommentsType = {
   id: string;
   content: string;
+  status: "pending" | "approved" | "rejected";
 }[];
 async function getComments(postId: string): Promise<CommentsType> {
   const res = await axios.get(
@@ -23,7 +24,12 @@ const CommentList = async ({ comments }: { comments: CommentsType }) => {
         {comments.map((c) => {
           return (
             <li key={c.id} className="w-full px-4 py-2 rounded-b-lg">
-              - {c.content}
+              -
+              {c.status === "approved"
+                ? c.content
+                : c.status === "pending"
+                ? "This is comment is getting reviewed"
+                : "The comment is rejected "}
             </li>
           );
         })}
