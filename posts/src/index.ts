@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { randomBytes } from 'crypto'
 import axios from "axios";
-import { ports } from "../../ports";
+import { eventTypes, ports } from "../../utils";
 const posts: { [id: string]: { id: string; title: string } } = {}
 const app = express();
 app.use(
@@ -19,17 +19,17 @@ app.use(morgan("dev"));
 app.get('/posts', (req, res) => {
     res.json({ posts })
 })
-app.post('/events', (req, res) => {
-    console.log('body from posts', req.body);
-    res.send({ status: "OK" })
-
-})
 app.post('/posts', async (req, res) => {
     const { title } = req.body
     const id = randomBytes(4).toString('hex')
     posts[`${id}`] = { id, title }
-    await axios.post(`http://localhost:/${ports.eventBus}/events`, JSON.stringify({ type: "postCreated", data: { id, title } }))
+    await axios.post(`http://localhost:${ports.eventBus}/events`, { type: eventTypes.postCreated, data: { id, title } })
     res.status(201).json({ posts })
+})
+app.post('/events', (req, res) => {
+    console.log('body from posts', req.body.type);
+    res.send({ status: "OK" })
+
 })
 
 

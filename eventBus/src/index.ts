@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import axios from "axios";
-import { ports } from "../../ports";
+import { ports } from "../../utils";
 const app = express();
 app.use(
     cors({

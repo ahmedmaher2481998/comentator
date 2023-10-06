@@ -5,3 +5,9 @@ export const ports = {
     query: 5002,
     eventBus: 5050
 }
+
+
+export enum eventTypes {
+    postCreated = "post_create",
+    commentCreated = "comment_created"
+}

@@ -7,14 +7,16 @@
     "posts",
     "comments",
     "client",
-    "eventBus"
+    "eventBus",
+    "query"
   ],
   "scripts": {
     "client:start": "npm run dev --workspace=client",
     "posts:dev": "npm run dev --workspace=posts",
     "comments:dev": "npm run dev --workspace=comments",
     "eventBus:dev": "npm run dev --workspace=eventBus",
-    "start": "concurrently 'npm:client:start' 'npm:posts:dev' 'npm:comments:dev' 'npm:eventBus:dev'"
+    "query:dev": "npm run dev --workspace=query",
+    "start": "concurrently 'npm:client:start' 'npm:posts:dev' 'npm:comments:dev' 'npm:eventBus:dev' 'npm:query:dev'"
   },
   "keywords": [],
   "author": "",
