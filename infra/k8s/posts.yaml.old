@@ -5,4 +5,5 @@ metadata:
 spec:
   containers:
     - name: posts
-      image: ahmedmaher2481998/posts.0.01
+      image: ahmedmaher2481998/posts:0.1
+      imagePullPolicy: IfNotPresent

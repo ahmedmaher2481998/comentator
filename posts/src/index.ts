@@ -4,9 +4,24 @@ import cors from "cors";
 import morgan from "morgan";
 import { randomBytes } from 'crypto'
 import axios from "axios";
-import { eventTypes, ports } from "../../utils";
 const posts: { [id: string]: { id: string; title: string } } = {}
 const app = express();
+export const ports = {
+    client: 3000,
+    posts: 5000,
+    comments: 5001,
+    query: 5002,
+    moderation: 5003,
+    eventBus: 5050
+}
+
+
+export enum eventTypes {
+    postCreated = "post_create",
+    commentCreated = "comment_created",
+    commentModerated = "comment_moderated",
+    commentUpdated = "comment_updated"
+}
 app.use(
     cors({
         origin: "*",
@@ -33,4 +48,8 @@ app.post('/events', (req, res) => {
 })
 
 
-app.listen(ports.posts, () => console.debug(`posts service listening on port ${ports.posts}`));
+app.listen(ports.posts, () => {
+
+    console.log("Current Version is v latest ");
+    console.debug(`posts service listening on port ${ports.posts}`)
+});
