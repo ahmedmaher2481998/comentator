@@ -69,11 +69,13 @@
 
 - 27
 
-  -
+  - add ingress-nginx
+  - install ingress-nginx from the internet and run the mandatory command and take a look into it
+  - look at the docs if you got stuck the [link](https://kubernetes.github.io/ingress-nginx/deploy/)
 
 - 28
 
-  -
+  - create ingress config file
 
 - 29
 
