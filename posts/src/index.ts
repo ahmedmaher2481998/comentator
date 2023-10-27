@@ -38,7 +38,7 @@ app.post('/posts', async (req, res) => {
     const { title } = req.body
     const id = randomBytes(4).toString('hex')
     posts[`${id}`] = { id, title }
-    await axios.post(`http://localhost:${ports.eventBus}/events`, { type: eventTypes.postCreated, data: { id, title } })
+    await axios.post(`http://event-bus-srv:${ports.eventBus}/events`, { type: eventTypes.postCreated, data: { id, title } })
     res.status(201).json({ posts })
 })
 app.post('/events', (req, res) => {

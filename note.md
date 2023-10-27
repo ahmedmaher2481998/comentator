@@ -2,6 +2,8 @@
 
 #### K8S
 
+> > Fixed ther error of accessing the minikube by using docker a minikube driver instead of the default (qemu) that needed built in and i could'nt access it cuz it was inside of a the node as a vm
+
 - 17
   - apply post-srv type NodePort
   - check it's created ,get the port
@@ -14,8 +16,8 @@
 
 - 19
 
-  - event-bus-srv cluster ip ,ClusterIp type is the default type, add on to the depl file use --- to seprate apply it to the cluster
-  - apply the newdpl file
+  - event-bus-srv cluster ip ,ClusterIp type is the default type, add on to the depl file use --- to septate apply it to the cluster
+  - apply the new depl file
   - posts srv cluster ip and apply it , use a diff service name "posts-srv" is already used in the nodeIp service u created earlier
 
 - 20
@@ -76,11 +78,54 @@
 - 28
 
   - create ingress config file
+  - teach it the routing rules we want
+  - ingress-srv , apiVersion networking.k8s.io/v1beta kind Ingress ,annotation
+  - rules => host ,http,paths - path , backend , service name ,port
 
 - 29
 
-  -
+  - the host property
+  - tweak the hosts file /etc/hosts ,sys32/drivers/etc/hosts , only for he local dev
+  - add 127.0.0.1(minikube ip) posts.com
+  - test the host name in ur browser and get posts
 
 - 30
 
+  - map / to the react server
+  - change urls to post.com api to the ingress nginx
+  - build client image ,push it
+  - create client-depl ,and add the client-serv and apply it to the cluster
+
+- ## 31
+
+  - setup the rest of the routing rules to the ingress srv file
+  - 1:21 routing scheme try to draw it ur self first
+  - edit the images (client , posts images ) to fix the conflict of the pots route
+  - restart the client deployment , posts to pull the latest images
+
+- ## 32
+
+  - edit the ingress service and rollout restart it
+  - add all routes ,use regex with wild card
+  - note to add wild card for react router
+  - test the whole app , make posts , comments
+
+- ## 33
+
+  - skaffold
+  - make a config for skaffold to manage all the containers and src code
+  - run it and test it rewatch the last 3 videos
+
+- ## 34
+
+  -
+  -
+
+- ## 35
+
+  -
+  -
+
+- ## 36
+  -
   -
