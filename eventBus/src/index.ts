@@ -60,7 +60,7 @@ app.post("/events", async (req, res) => {
         `http://posts-clusterip-srv:${posts}`,
         `http://comments-srv:${comments}`,
         `http://moderation-srv:${moderation}`,
-        `http://query-srv-srv:${query}`,
+        `http://query-srv:${query}`,
     ];
     await emitToAllSubs(allUrls, event);
     res.status(200).json({ status: "OK" });

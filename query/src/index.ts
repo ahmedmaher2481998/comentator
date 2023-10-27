@@ -1,8 +1,24 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import { eventTypes, ports } from "../../utils";
 import axios from "axios";
+
+export const ports = {
+    client: 3000,
+    posts: 5000,
+    comments: 5001,
+    query: 5002,
+    moderation: 5003,
+    eventBus: 5050
+}
+
+
+export enum eventTypes {
+    postCreated = "post_create",
+    commentCreated = "comment_created",
+    commentModerated = "comment_moderated",
+    commentUpdated = "comment_updated"
+}
 const app = express();
 type CommentType = {
     id: string;
@@ -65,7 +81,8 @@ app.post("/events", (req, res) => {
 
 app.listen(ports.query, async () => {
     console.debug(`query service listening on port ${ports.query}`);
-    const res = await axios.get(`http://localhost:${ports.eventBus}/events`);
+    console.log('getting past events ');
+    const res = await axios.get(`http://event-bus-srv:${ports.eventBus}/events`);
     const events: any[] = res.data
     console.log(events);
     events.forEach(e => {
