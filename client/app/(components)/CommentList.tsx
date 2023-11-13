@@ -1,4 +1,3 @@
-import { ports } from "../../../utils";
 import axios from "axios";
 import React from "react";
 
@@ -9,14 +8,12 @@ type CommentsType = {
 }[];
 async function getComments(postId: string): Promise<CommentsType> {
   const res = await axios.get(
-    `http://localhost:${ports.comments}/posts/${postId}/comments`
+    `http://comments-srv:5001/posts/${postId}/comments`
   );
   return res.data;
 }
 
 const CommentList = async ({ comments }: { comments: CommentsType }) => {
-  // const comments = await getComments(postId);
-
   return (
     <div>
       comments

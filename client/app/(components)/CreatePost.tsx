@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { revalidatePath } from "next/cache";
 import axios from "axios";
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:5000/posts", { title });
+    const res = await axios.post("http://posts-clusterip-srv:5000/posts", {
+      title,
+    });
     console.log("res of creating a post ", res.data);
 
     setTitle("");

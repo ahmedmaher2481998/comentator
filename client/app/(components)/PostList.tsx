@@ -1,19 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import CreateComment from "./CreateComment";
 import CommentList from "./CommentList";
-import { ports } from "../../../utils";
 
 type PostWithCommentsType = {
   [postId: string]: {
     id: string;
     title: string;
-    comments: { id: string; content: string }[];
+    comments: { id: string; content: string; status: any }[];
   };
 };
 
 async function getPosts() {
-  const res = await axios.get(`http://localhost:${ports.query}/posts`);
+  const res = await axios.get(`http://query-srv:5002/posts`);
   return res.data;
 }
 

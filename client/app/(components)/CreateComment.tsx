@@ -7,7 +7,7 @@ const CreateComment = ({ postId }: { postId: string }) => {
   const handleCreateComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await axios.post(
-      `http://localhost:5001/posts/${postId}/comments`,
+      `http://posts-clusterip-srv:5001/posts/${postId}/comments`,
       { content }
     );
     console.log("res of creating a post ", res.data);
