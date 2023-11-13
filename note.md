@@ -62,7 +62,7 @@
   - we will add the react server as a pod but it's not the one making the request
   - the request is made from the client browser that's running our react code
   - so to access the pods we have 2 solutions
-    . 1 to create a NodeIP for each service which is very un practical cuz the port is random and it may chang with restarting the deployment
+    . 1 to create a NodeIP for each service which is very un-practical cuz the port is random and it may chang with restarting the deployment
     . 2 to create a load balancer that handles the request internally we will use nginx with ingress
 
 - 26
