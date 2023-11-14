@@ -11,7 +11,7 @@ type PostWithCommentsType = {
 };
 
 async function getPosts() {
-  const res = await axios.get(`http://query-srv:5002/posts`);
+  const res = await axios.get(`http://query-srv:5002/query/posts`);
   return res.data;
 }
 

@@ -5,7 +5,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const handleCreatePost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await axios.post("http://posts-clusterip-srv:5000/posts", {
+    const res = await axios.post("http://posts.com/posts/create", {
       title,
     });
     console.log("res of creating a post ", res.data);

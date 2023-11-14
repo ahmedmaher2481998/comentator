@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - name: client
+
           image: ahmedmaher2481998/client
 
 ---

@@ -31,10 +31,11 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.get('/posts', (req, res) => {
+app.get('/posts/get', (req, res) => {
     res.json({ posts })
 })
-app.post('/posts', async (req, res) => {
+
+app.post('/posts/create', async (req, res) => {
     const { title } = req.body
     const id = randomBytes(4).toString('hex')
     posts[`${id}`] = { id, title }

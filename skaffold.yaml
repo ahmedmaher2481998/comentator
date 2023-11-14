@@ -1,0 +1,60 @@
+apiVersion: skaffold/v2beta3
+kind: Config
+deploy:
+  kubeContext: minikube
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ahmedmaher2481998/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./app/**/*.(ts/js)"
+    - image: ahmedmaher2481998/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./src/**/*.(ts/js)"
+    - image: ahmedmaher2481998/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./src/**/*.(ts/js)"
+    - image: ahmedmaher2481998/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./src/**/*.(ts/js)"
+    - image: ahmedmaher2481998/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./src/**/*.(ts/js)"
+    - image: ahmedmaher2481998/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "./src/**/*.(ts/js)"

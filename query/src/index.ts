@@ -69,7 +69,7 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.get("/posts", (req, res) => {
+app.get("/query/posts", (req, res) => {
     res.status(200).json(posts);
 });
 app.post("/events", (req, res) => {
